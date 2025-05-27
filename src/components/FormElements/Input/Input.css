@@ -1,0 +1,42 @@
+.input-field {
+  position: relative;
+}
+
+input {
+  border: 1px solid var(--color-dark-grey);
+  border-radius: var(--border-radius-small);
+  height: 100%;
+  position: relative;
+  padding: 1rem;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  background: var(--color-white);
+  width: 100%;
+  color: var(--color-dark-grey);
+}
+
+label {
+  pointer-events: none;
+  cursor: text;
+  line-height: 100%;
+  left: 0.75rem;
+  top: 0rem;
+  font-size: 1.2rem;
+  position: absolute;
+  transform: translateY(100%);
+  transition: all 0.2s ease-out 0s;
+  padding: 0 10px;
+  color: var(--color-dark-grey);
+}
+
+.input-field input:not(:invalid) + label,
+.input-field input:focus + label {
+  background: var(--color-white);
+  transform: translateY(-50%);
+  font-size: 0.8rem;
+  color: var(--color-dark-grey);
+}
+
+input:focus-visible {
+  outline: 1px solid var(--color-red);
+}

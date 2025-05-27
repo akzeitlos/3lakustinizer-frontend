@@ -1,0 +1,63 @@
+/* === Reset & Normalize === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Vollständige Höhenkontrolle */
+html,
+body {
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Medien */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* Entferne Fokus-Stile (du kannst deine eigenen setzen) */
+*:focus,
+*:focus-visible,
+*:focus-within {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Links & Listen */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* Tabellen */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Buttons ohne Browser-Styles */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}

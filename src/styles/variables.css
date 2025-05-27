@@ -1,0 +1,15 @@
+:root {
+  /*Colors */
+  --color-white: #ffffff;
+  --color-dark-grey: #444444;
+  --color-red: #ee353c;
+  --color-dark-red: #600000;
+
+  /* Box Shadow */
+  --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  /* Border Radius*/
+  --border-radius-small: 0.25rem;
+  --border-radius-normal: 0.5rem;
+  --border-radius-big: 0.75rem;
+}
