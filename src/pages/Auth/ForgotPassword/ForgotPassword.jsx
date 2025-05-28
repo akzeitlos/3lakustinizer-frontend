@@ -3,7 +3,9 @@ import Input from "@/components/FormElements/Input/Input.jsx";
 import useAuth from "@/hooks/useAuth.jsx";
 import Button from "@/components/Button/Button.jsx";
 import Logo from "@/assets/logo/logo.svg";
-import "./ForgotPassword.css"; // optional
+import "./ForgotPassword.css";
+import "../Auth.css";
+
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -19,9 +21,9 @@ function ForgotPassword() {
   }
 
   return (
-    <div className="forgot-password-container">
+    <div className="auth-container">
       <img className="logo" src={Logo} alt="Logo" />
-      <form className="forgot-password-form" onSubmit={handleSubmit}>
+      <form className="auth-form" onSubmit={handleSubmit}>
         <Input
           name="email"
           type="text"

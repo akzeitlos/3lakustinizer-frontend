@@ -3,9 +3,9 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
 import Dashboard from '@/pages/Dashboard/Dashboard.jsx';
-import Login from '@/pages/Login/Login';
-import ForgotPassword from "@/pages/ForgotPassword/ForgotPassword";
-import ResetPassword from "@/pages/ResetPassword/ResetPassword";
+import Login from '@/pages/Auth/Login/Login';
+import ForgotPassword from "@/pages/Auth/ForgotPassword/ForgotPassword";
+import ResetPassword from "@/pages/Auth/ResetPassword/ResetPassword";
 import ProtectedRoute from '@/components/ProtectedRoute/ProtectedRoute';
 
 

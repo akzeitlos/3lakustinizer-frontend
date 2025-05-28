@@ -4,7 +4,9 @@ import Input from "@/components/FormElements/Input/Input.jsx";
 import useAuth from "@/hooks/useAuth.jsx";
 import Button from "@/components/Button/Button.jsx";
 import Logo from "@/assets/logo/logo.svg";
-import "./ResetPassword.css"; // optional
+import "./ResetPassword.css";
+import "../Auth.css";
+
 
 function ResetPassword() {
   const [params] = useSearchParams();
@@ -31,9 +33,9 @@ function ResetPassword() {
   }
 
   return (
-    <div className="reset-password-container">
+    <div className="auth-container">
       <img className="logo" src={Logo} alt="Logo" />
-      <form className="reset-password-form" onSubmit={handleSubmit}>
+      <form className="auth-form" onSubmit={handleSubmit}>
         <Input
           name="password"
           type="password"

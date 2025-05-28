@@ -3,9 +3,10 @@ import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "@/context/authContext.jsx";
 import useAuth from "@/hooks/useAuth.jsx";
 import Logo from "@/assets/logo/logo.svg";
-import "./Login.css";
 import Input from "@/components/FormElements/Input/Input.jsx";
 import Button from "@/components/Button/Button.jsx";
+import "./Login.css";
+import "../Auth.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -31,9 +32,9 @@ function Login() {
   }
 
   return (
-    <div className="login-container">
+    <div className="auth-container">
       <img className="logo" src={Logo} alt="Logo" />
-      <form className="login-form" onSubmit={handleLogin}>
+      <form className="auth-form" onSubmit={handleLogin}>
         <Input
           name="emailOrUsername"
           type="text"
