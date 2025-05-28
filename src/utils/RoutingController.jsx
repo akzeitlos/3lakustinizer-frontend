@@ -2,9 +2,12 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
-import Dashboard from '../pages/Dashboard/Dashboard.jsx';
-import Login from '../pages/Login/Login';
-import ProtectedRoute from '../components/ProtectedRoute/ProtectedRoute';
+import Dashboard from '@/pages/Dashboard/Dashboard.jsx';
+import Login from '@/pages/Login/Login';
+import ForgotPassword from "@/pages/ForgotPassword/ForgotPassword";
+import ResetPassword from "@/pages/ResetPassword/ResetPassword";
+import ProtectedRoute from '@/components/ProtectedRoute/ProtectedRoute';
+
 
 const RoutingController = ({ token, isAuthenticated }) => {
   let userRoles = [];
@@ -32,6 +35,8 @@ const RoutingController = ({ token, isAuthenticated }) => {
       ) : (
         <>
           <Route path="/login" element={<Login />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="*" element={<Navigate to="/login" replace />} />
         </>
       )}

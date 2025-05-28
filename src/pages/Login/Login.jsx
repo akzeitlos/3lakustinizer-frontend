@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "@/context/authContext.jsx";
 import useAuth from "@/hooks/useAuth.jsx";
 import Logo from "@/assets/logo/logo.svg";
@@ -22,7 +22,6 @@ function Login() {
     if (result.success) {
       setAuthToken(result.data.token);
       navigate("/");
-    } else {
     }
   }
 
@@ -52,7 +51,10 @@ function Login() {
           onChange={handleInputChange}
           required
         />
-        <Button type="submit">Login</Button>
+        <Button type="submit" style="primary">Login</Button>
+          <Link to="/forgot-password" className="forgot-password-link">
+            Passwort vergessen?
+          </Link>
         {error && <p className="error-message">{error}</p>}
       </form>
     </div>

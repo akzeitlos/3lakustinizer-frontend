@@ -1,12 +1,12 @@
 import "./Button.css"; // falls du Styles brauchst
 
-function Button({ type = "button", onClick, disabled = false, children, className = "" }) {
+function Button({ type = "button", onClick, disabled = false, children, style = "primary" }) {
   return (
     <button
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`button primary-button ${className}`}
+      className={`button ${style}-button`}
     >
       {children}
     </button>
