@@ -3,27 +3,33 @@ import axios from "axios";
 import { AuthContext } from "@/context/authContext.jsx";
 
 function useAuth() {
+  // Zugriff auf die setAuthToken-Funktion aus dem globalen Authentifizierungscontext
   const { setAuthToken } = useContext(AuthContext);
+
+  // State zur Anzeige von Ladezuständen und Fehlern
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // Basis-URL der API aus den Umgebungsvariablen
   const API_BASE_URL = import.meta.env.VITE_API_URL;
 
+  /**
+   * Führt den Login durch und gibt das Ergebnis zurück.
+   * Erfolgreich: Token speichern und Erfolg zurückgeben.
+   * Fehler: Fehlermeldung setzen und zurückgeben.
+   */
   async function login(formData) {
     setLoading(true);
     setError(null);
 
     try {
-      const response = await axios.post(
-        `${API_BASE_URL}/auth/login`,
-        {
-          emailOrUsername: formData.emailOrUsername,
-          password: formData.password,
-        }
-      );
+      const response = await axios.post(`${API_BASE_URL}/auth/login`, {
+        emailOrUsername: formData.emailOrUsername,
+        password: formData.password,
+      });
 
       const token = response.data.token;
-      setAuthToken(token);
+      setAuthToken(token); // Token im globalen Context speichern
 
       return { success: true, data: response.data };
     } catch (err) {
@@ -34,35 +40,39 @@ function useAuth() {
       setLoading(false);
     }
   }
+
+  /**
+   * Sendet eine Anfrage zum Zurücksetzen des Passworts.
+   * Erwartet die E-Mail des Nutzers.
+   */
   async function requestPasswordReset(email) {
     setLoading(true);
     setError(null);
-    try {
-      const response = await fetch(`${API_BASE_URL}/auth/request-reset`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Fehler beim Absenden");
-      }
+    try {
+      await axios.post(`${API_BASE_URL}/auth/request-reset`, {
+        email,
+      });
 
       return { success: true };
     } catch (err) {
-      setError(err.message);
-      return { success: false, error: err.message };
+      const message = err.response?.data?.message || "Fehler beim Absenden";
+      setError(message);
+      return { success: false, error: message };
     } finally {
       setLoading(false);
     }
   }
 
-  
+  /**
+   * Setzt das Passwort mithilfe eines Reset-Tokens zurück.
+   * Führt vorher eine Validierung durch (Passwörter müssen übereinstimmen).
+   */
   async function resetPassword(token, password, confirmPassword) {
     setLoading(true);
     setError(null);
 
+    // Validierung: beide Passwörter müssen gleich sein
     if (password !== confirmPassword) {
       setError("Passwörter stimmen nicht überein.");
       setLoading(false);
@@ -70,23 +80,23 @@ function useAuth() {
     }
 
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/reset-password`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token, newPassword: password }),
+      await axios.post(`${API_BASE_URL}/auth/reset-password`, {
+        token,
+        newPassword: password,
       });
-
-      if (!response.ok) throw new Error("Zurücksetzen fehlgeschlagen");
 
       return { success: true };
     } catch (err) {
-      setError("Link ungültig oder abgelaufen.");
-      return { success: false, error: err.message };
+      const message =
+        err.response?.data?.message || "Link ungültig oder abgelaufen.";
+      setError(message);
+      return { success: false, error: message };
     } finally {
       setLoading(false);
     }
   }
 
+  // Rückgabe der Funktionen und Statuswerte für Komponenten
   return { login, requestPasswordReset, resetPassword, loading, error };
 }
 
