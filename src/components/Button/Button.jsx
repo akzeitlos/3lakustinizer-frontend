@@ -1,4 +1,4 @@
-import "./Button.css"; // falls du Styles brauchst
+import "./Button.css";
 
 function Button({ type = "button", onClick, disabled = false, children, style = "primary" }) {
   return (

@@ -32,7 +32,6 @@ svg {
 *:focus-visible,
 *:focus-within {
   outline: none;
-  box-shadow: none;
 }
 
 /* Links & Listen */

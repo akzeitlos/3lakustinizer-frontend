@@ -1,0 +1,33 @@
+.nav-links li {
+  padding: 1rem;
+  border-radius: var(--border-radius-normal);
+  transition: all 0.3s ease;
+}
+
+.nav-links li:hover,
+.nav-links li:has(.active) {
+  background-color: var(--color-light-grey);
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  color: var(--color-dark-grey);
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  width: 100%;
+  gap: 1rem;
+}
+
+.link-text {
+  display: inline;
+}
+
+.collapsed .link-text {
+  display: none;
+}
+
+.collapsed .nav-links li {
+  padding: 0.4rem;
+}
